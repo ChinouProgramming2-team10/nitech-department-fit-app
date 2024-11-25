@@ -14,15 +14,8 @@ with open('data/departments.json', 'r', encoding='utf-8') as f:
 
 @app.route('/')
 def index():
-    
+    session['responses'] = []     
     return render_template('index.html')
-
-@app.route('/start_quiz', methods=['GET', 'POST'])
-def start_quiz():
-    session['responses'] = []  # 新しいクイズを開始する際にセッションをリセット
-    return redirect(url_for('quiz', question_id=1))
-
-
 
 @app.route('/quiz/<int:question_id>', methods=['GET', 'POST'])
 def quiz(question_id):
