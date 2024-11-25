@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 import json
 
+
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # セキュアなキーに置き換えてください
 
@@ -13,7 +14,15 @@ with open('data/departments.json', 'r', encoding='utf-8') as f:
 
 @app.route('/')
 def index():
+    
     return render_template('index.html')
+
+@app.route('/start_quiz', methods=['GET', 'POST'])
+def start_quiz():
+    session['responses'] = []  # 新しいクイズを開始する際にセッションをリセット
+    return redirect(url_for('quiz', question_id=1))
+
+
 
 @app.route('/quiz/<int:question_id>', methods=['GET', 'POST'])
 def quiz(question_id):
@@ -22,10 +31,14 @@ def quiz(question_id):
 
     if request.method == 'POST':
         selected_option = request.form.get('option')
+        print(selected_option)
         if selected_option is None:
             error = '選択肢を選んでください。'
             return render_template('quiz.html', question=questions[question_id - 1], error=error)
-        session['responses'].append(int(selected_option))
+      
+        responses = session.get('responses')
+        responses.append(int(selected_option))
+        session['responses'] = responses
 
         if question_id >= len(questions):
             return redirect(url_for('result'))
@@ -35,18 +48,23 @@ def quiz(question_id):
     question = questions[question_id - 1]
     return render_template('quiz.html', question=question, question_id=question_id, total_questions=len(questions))
 
+
 @app.route('/result')
 def result():
     responses = session.get('responses', [])
     department_scores = {dept: 0 for dept in departments.keys()}
+    print(f"Responses: {responses}")
 
     for i, selected_option_index in enumerate(responses):
         option = questions[i]['options'][selected_option_index]
-        for dept, points in option['points'].items():
+        for dept, points in option['score'].items():
             department_scores[dept] += points
 
     max_score = max(department_scores.values())
     best_departments = [dept for dept, score in department_scores.items() if score == max_score]
+    print(responses)
+    print(department_scores)
+    print(best_departments)
 
     return render_template('result.html', departments=best_departments, department_names=departments)
 
