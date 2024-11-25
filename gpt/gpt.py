@@ -5,8 +5,6 @@ import os
 def get_GPT_response(EM: int, PE: int, LC: int, AC: int, CS: int):
     client = OpenAI()
 
-    # os.environ["OPENAI_API_KEY"] = os.getenv["OPENAI_API_KEY"] # hitsuyoukadoukawakaranai
-
     response = client.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[
@@ -16,7 +14,7 @@ def get_GPT_response(EM: int, PE: int, LC: int, AC: int, CS: int):
             },
             {
                 "role": "user",
-                "content": """
+                "content": f"""
                     I take a test for getting a suitable department for university.
                     Please comment about my score.
                     My Score is below.
@@ -27,7 +25,6 @@ def get_GPT_response(EM: int, PE: int, LC: int, AC: int, CS: int):
                         "AC": {AC},
                         "CS": {CS},
                     ]
-
                     EM means Electronics.
                     PE means Phisics.
                     LC means Life Sciences.
@@ -41,3 +38,6 @@ def get_GPT_response(EM: int, PE: int, LC: int, AC: int, CS: int):
     )
 
     return response.choices[0].message.content
+
+
+print(get_GPT_response(EM=56, PE=55, LC=35, AC=15, CS=69))
