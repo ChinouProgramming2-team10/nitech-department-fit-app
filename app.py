@@ -1,65 +1,80 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 import json
+from gpt.gpt import get_GPT_response
 
 
 app = Flask(__name__)
-app.secret_key = 'your_secret_key'  # セキュアなキーに置き換えてください
+app.secret_key = "your_secret_key"  # セキュアなキーに置き換えてください
 
 # 質問と学科のデータを読み込み
-with open('data/questions.json', 'r', encoding='utf-8') as f:
+with open("data/questions.json", "r", encoding="utf-8") as f:
     questions = json.load(f)
 
-with open('data/departments.json', 'r', encoding='utf-8') as f:
+with open("data/departments.json", "r", encoding="utf-8") as f:
     departments = json.load(f)
 
-@app.route('/')
+
+@app.route("/")
 def index():
-    session['responses'] = []     
-    return render_template('index.html')
+    session["responses"] = []
+    return render_template("index.html")
 
-@app.route('/quiz/<int:question_id>', methods=['GET', 'POST'])
+
+@app.route("/quiz/<int:question_id>", methods=["GET", "POST"])
 def quiz(question_id):
-    if 'responses' not in session:
-        session['responses'] = []
+    if "responses" not in session:
+        session["responses"] = []
 
-    if request.method == 'POST':
-        selected_option = request.form.get('option')
+    if request.method == "POST":
+        selected_option = request.form.get("option")
         print(selected_option)
         if selected_option is None:
-            error = '選択肢を選んでください。'
-            return render_template('quiz.html', question=questions[question_id - 1], error=error)
-      
-        responses = session.get('responses')
+            error = "選択肢を選んでください。"
+            return render_template(
+                "quiz.html", question=questions[question_id - 1], error=error
+            )
+
+        responses = session.get("responses")
         responses.append(int(selected_option))
-        session['responses'] = responses
+        session["responses"] = responses
 
         if question_id >= len(questions):
-            return redirect(url_for('result'))
+            return redirect(url_for("result"))
         else:
-            return redirect(url_for('quiz', question_id=question_id + 1))
+            return redirect(url_for("quiz", question_id=question_id + 1))
 
     question = questions[question_id - 1]
-    return render_template('quiz.html', question=question, question_id=question_id, total_questions=len(questions))
+    return render_template(
+        "quiz.html",
+        question=question,
+        question_id=question_id,
+        total_questions=len(questions),
+    )
 
 
-@app.route('/result')
+@app.route("/result")
 def result():
-    responses = session.get('responses', [])
+    responses = session.get("responses", [])
     department_scores = {dept: 0 for dept in departments.keys()}
     print(f"Responses: {responses}")
 
     for i, selected_option_index in enumerate(responses):
-        option = questions[i]['options'][selected_option_index]
-        for dept, points in option['score'].items():
+        option = questions[i]["options"][selected_option_index]
+        for dept, points in option["score"].items():
             department_scores[dept] += points
 
     max_score = max(department_scores.values())
-    best_departments = [dept for dept, score in department_scores.items() if score == max_score]
+    best_departments = [
+        dept for dept, score in department_scores.items() if score == max_score
+    ]
     print(responses)
     print(department_scores)
     print(best_departments)
 
-    return render_template('result.html', departments=best_departments, department_names=departments)
+    return render_template(
+        "result.html", departments=best_departments, department_names=departments
+    )
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     app.run(debug=True)
