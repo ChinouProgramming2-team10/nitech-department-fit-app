@@ -17,7 +17,8 @@ def get_GPT_response(EM: int, PE: int, LC: int, AC: int, CS: int):
             {
                 "role": "user",
                 "content": """
-                    Please Comment My 
+                    I take a test for getting a suitable department for university.
+                    Please comment about my score.
                     My Score is below.
                     [
                         "EM": {EM},
@@ -26,6 +27,14 @@ def get_GPT_response(EM: int, PE: int, LC: int, AC: int, CS: int):
                         "AC": {AC},
                         "CS": {CS},
                     ]
+
+                    EM means Electronics.
+                    PE means Phisics.
+                    LC means Life Sciences.
+                    AC means Sociologies.
+                    CS means Computer Sciences.
+
+                    Each max score is 80.
                 """,
             },
         ],
