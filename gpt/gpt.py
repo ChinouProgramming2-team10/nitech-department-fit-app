@@ -1,22 +1,34 @@
-import openai
+from openai import OpenAI
 import os
 
-my_api_key = os.getenv("OPENAI_API_KEY")
 
-# print(my_api_key) //debug
+def get_GPT_response(EM: int, PE: int, LC: int, AC: int, CS: int):
+    client = OpenAI()
 
+    # os.environ["OPENAI_API_KEY"] = os.getenv["OPENAI_API_KEY"] # hitsuyoukadoukawakaranai
 
-def get_GPT_response():
-    openai.api_key = my_api_key
-    response = openai.ChatCompletion.create(
+    response = client.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[
             {
                 "role": "system",
                 "content": "prompt is in English, but you output response in Japanese",
             },
-            {"role": "user", "content": "prompt"},
+            {
+                "role": "user",
+                "content": """
+                    Please Comment My 
+                    My Score is below.
+                    [
+                        "EM": {EM},
+                        "PE": {PE},
+                        "LC": {LC},
+                        "AC": {AC},
+                        "CS": {CS},
+                    ]
+                """,
+            },
         ],
     )
 
-    return response["choices"][0]["message"]["content"]
+    return response.choices[0].message.content
