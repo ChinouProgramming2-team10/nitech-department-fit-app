@@ -1,5 +1,4 @@
 from openai import OpenAI
-import os
 
 
 def get_GPT_response(EM: int, PE: int, LC: int, AC: int, CS: int):
