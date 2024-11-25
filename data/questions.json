@@ -1,0 +1,13 @@
+[
+  {
+    "id": 1,
+    "text": "あなたが最も興味のある科目は何ですか？",
+    "options": [
+      {"text": "数学", "points": {"department1": 2}},
+      {"text": "物理", "points": {"department2": 2}},
+      {"text": "化学", "points": {"department3": 2}},
+      {"text": "生物", "points": {"department4": 2}}
+    ]
+  }
+]
+  

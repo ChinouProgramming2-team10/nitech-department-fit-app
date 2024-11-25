@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>学科適性判定クイズ</title>
+    <!-- スタイルシートのリンク -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>ようこそ！学科適性判定クイズへ</h1>
+        <p>20の質問に答えて、あなたに最適な学科を見つけましょう。</p>
+        <a href="{{ url_for('quiz', question_id=1) }}" class="start-button">クイズを開始</a>
+    </div>
+</body>
+</html>>
