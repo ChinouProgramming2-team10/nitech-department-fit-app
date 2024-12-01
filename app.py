@@ -58,8 +58,13 @@ def result():
     print(responses)
     print(department_scores)
     print(best_departments)
+    
+    department_scores_str = ""
+    for dept, score in department_scores.items():
+        department_scores_str += dept + ":" + str(score) + ","
+    print(department_scores_str)
 
-    return render_template('result.html', departments=best_departments, department_names=departments)
+    return render_template('result.html', departments=department_scores_str, department_names=departments)
 
 if __name__ == '__main__':
     app.run(debug=True)

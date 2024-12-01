@@ -3,14 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <title>結果</title>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- <script src="js/result.js"></script> -->
+    <script src="{{ url_for('static', filename='js/result.js') }}"></script>
 </head>
 <body>
-    <h1>あなたに適した学科は:</h1>
-    <ul>
-        {% for dept in departments %}
-            <li>{{ department_names[dept] }}</li>
-        {% endfor %}
-    </ul>
+    <header>
+
+    </header>
+    <script>
+        const scores = "{{ departments}}";
+        const names = "{{ department_names }}";
+    </script>
+    <h1 id="best_dep">あなたに適した学科は:</h1>
+    
+    <canvas id="result_chart"></canvas>
     <a href="{{ url_for('index') }}">もう一度やり直す</a>
 </body>
 </html>
