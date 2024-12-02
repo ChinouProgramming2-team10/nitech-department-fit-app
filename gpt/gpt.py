@@ -39,4 +39,4 @@ def get_GPT_response(EM: int, PE: int, LC: int, AC: int, CS: int):
     return response.choices[0].message.content
 
 
-print(get_GPT_response(EM=56, PE=55, LC=35, AC=15, CS=69))
+# print(get_GPT_response(EM=56, PE=55, LC=35, AC=15, CS=69))
