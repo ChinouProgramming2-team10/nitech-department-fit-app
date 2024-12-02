@@ -3,25 +3,42 @@
   <head>
     <meta charset="UTF-8" />
     <title>結果</title>
-
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='style.css') }}"
-    />
-  </head>
-  <body>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- <script src="js/result.js"></script> -->
+    <!-- <link src="stylesheet" href="../static/style/result.css"/> -->
+    <script src="{{ url_for('static', filename='js/result.js') }}"></script>
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/result.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/header.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/footer.css') }}">
+</head>
+<body>
     {% include 'header.html' %}
-    <main>
-      <h1>あなたに適した学科は:</h1>
-      <ul>
-        {% for dept in departments %}
-        <li>{{ department_names[dept] }}</li>
-        {% endfor %}
-      </ul>
-      <h2>GPTからのコメント</h2>
-      <div>{{　gpt_comment }}</div>
-      <a href="{{ url_for('index') }}">もう一度やり直す</a>
-    </main>
+    <script>
+        const scores = "{{ departments}}";
+        const score_str = "{{ department_str }}"
+        const names = "{{ department_names }}";
+        const gpt = "{{ gpt_comment }}"
+    </script>
+    <div class="main">
+        <div id="dep">
+            <p id="best_dep">あなたに適した学科は:</p>
+        </div>
+
+        <div class="gpt">
+            <p id="gpt_title">CharGPTのコメント</p>
+            <p id="comment"></p>
+        </div>
+        
+        <div id="retry_shape">
+            <a href="{{ url_for('index') }}" id="retry">もう一度やり直す</a>
+        </div>
+        <div id="canvas_div">
+            <canvas id="result_chart"></canvas>
+        </div>
+    </div>
     {% include 'footer.html' %}
   </body>
 </html>
