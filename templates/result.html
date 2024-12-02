@@ -10,11 +10,10 @@
     <script src="{{ url_for('static', filename='js/result.js') }}"></script>
     
     <link rel="stylesheet" href="{{ url_for('static', filename='style/header.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/footer.css') }}">
 </head>
 <body>
-    <header>
-        <div id="header_title">学科適性判定クイズ</div>
-    </header>
+    {% include 'header.html' %}
     <script>
         const scores = "{{ departments}}";
         const names = "{{ department_names }}";
@@ -23,5 +22,6 @@
     
     <canvas id="result_chart"></canvas>
     <a href="{{ url_for('index') }}">もう一度やり直す</a>
+    {% include 'footer.html' %}
 </body>
 </html>
