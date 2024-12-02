@@ -3,17 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <title>結果</title>
-  </head>
-  <body>
-    <h1>あなたに適した学科は:</h1>
-    <ul>
-      {% for dept in departments %}
-      <li>{{ department_names[dept] }}</li>
-      {% endfor %}
-    </ul>
-    <h2>GPTからのコメント:</h2>
-    <div>{{ gpt_comment }}</div>
 
-    <a href="{{ url_for('index') }}">もう一度やり直す</a>
-  </body>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    {% include 'header.html' %}
+    <main>
+        <h1>あなたに適した学科は:</h1>
+        <ul>
+            {% for dept in departments %}
+                <li>{{ department_names[dept] }}</li>
+            {% endfor %}
+        </ul>
+        <a href="{{ url_for('index') }}">もう一度やり直す</a>
+    </main>
+    {% include 'footer.html' %}
+</body>
 </html>
