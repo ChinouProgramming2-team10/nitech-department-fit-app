@@ -51,6 +51,15 @@ def quiz(question_id):
         total_questions=len(questions),
     )
 
+@app.route("/result-test")
+def result_test():
+    return render_template(
+        "result.html",
+        departments=[],
+        department_str="EM:1,PE:2,LC:3,AC:4,CS:5,",
+        department_names=departments,
+        gpt_comment="このページは、テストページとなりますので結果は適切なものではありません。このページが表示された場合は速やかに閉じて初めからやり直してくださいまた、再度やり直してもこのページが表示される場合は、開発者への連絡をお願いします。連絡先->0X0-XXXX-XXXX.YYY-ZZZ@exsample.info",
+    )
 
 @app.route("/result")
 def result():
@@ -64,7 +73,7 @@ def result():
             department_scores[dept] += points
 
     max_score = max(department_scores.values())
-    
+
     best_departments = [
         dept for dept, score in department_scores.items() if score == max_score
     ]

@@ -4,6 +4,7 @@ html {
 body {
     background-color: #ecf1f9;
     margin-top: 10%;
+    margin-bottom: 10%;
 }
 header {
     position: fixed;

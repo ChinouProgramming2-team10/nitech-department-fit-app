@@ -32,20 +32,6 @@
     letter-spacing: 0.6rem;
     font-size: 2rem;
 }
-.footer {
-    background-color: #a6a6a6;
-    height: 30%;
-    margin: auto;
-
-    display: flex;
-}
-#footer-item {
-    width: 50%;
-    padding: 15% 0;
-    padding-left: 15%;
-
-    font-size: 1.25rem;
-}
 a {
     text-decoration: none;
 }

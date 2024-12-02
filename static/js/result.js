@@ -67,7 +67,7 @@ CustomLegendChartDisplay.prototype.getChartData = function () {
     let max_n = "";
     let score_dic = {};
 
-    for(let score of scores.split(',')) {
+    for(let score of score_str.split(',')) {
         let map = score.split(':');
         let scc = Number(map[1]);
         score_dic[map[0]] = scc;
@@ -79,6 +79,7 @@ CustomLegendChartDisplay.prototype.getChartData = function () {
     }
 
     $("#best_dep").text("あなたに適した学科は: " + dep_name_dic[max_n] + " ");
+    $("#comment").text(gpt);
 
     return {
         labels: [
@@ -108,6 +109,7 @@ CustomLegendChartDisplay.prototype.getChartOptions = function () {
             legend: {
                 // 凡例の非表示
                 display: false,
+                maintainAspectRatio: false,
             },
         },
     };

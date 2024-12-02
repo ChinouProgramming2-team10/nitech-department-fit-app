@@ -16,7 +16,7 @@
     
     font-size: 2rem;
     
-    margin: 5% auto;
+    margin: 2% auto;
     padding: 2.5%;
     width: 80%;
     text-align: center;
@@ -34,12 +34,14 @@
 }
 #quiz-item {
     text-align: left;
+    padding-left: 10%;
 }
 #quiz-button {
     height: 25%;
     width: 35%;
 
-    margin: 1.5% auto;
+    margin: 0 auto;
+    margin-top: 1.5%;
     padding: 2% 0;
 
     background-color: #fcb38b;
