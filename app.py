@@ -67,12 +67,28 @@ def result():
     best_departments = [
         dept for dept, score in department_scores.items() if score == max_score
     ]
-    print(responses)
-    print(department_scores)
-    print(best_departments)
+
+    gpt_comment = get_GPT_response(
+        EM=department_scores["EM"],
+        PE=department_scores["PE"],
+        LC=department_scores["LC"],
+        AC=department_scores["AC"],
+        CS=department_scores["CS"],
+    )
+
+    print(gpt_comment)
+
+    # debug
+
+    # print(responses)
+    # print(department_scores)
+    # print(best_departments)
 
     return render_template(
-        "result.html", departments=best_departments, department_names=departments
+        "result.html",
+        departments=best_departments,
+        department_names=departments,
+        gpt_comment=gpt_comment,
     )
 
 
