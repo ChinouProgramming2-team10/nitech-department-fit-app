@@ -20,7 +20,8 @@
         const scores = "{{ departments}}";
         const score_str = "{{ department_str }}"
         const names = "{{ department_names }}";
-        const gpt = "{{ gpt_comment }}"
+        const gpt = `{{ gpt_comment }}`
+        isLoad = true;
     </script>
     <div class="main">
         <div id="dep">
@@ -28,7 +29,7 @@
         </div>
 
         <div class="gpt">
-            <p id="gpt_title">CharGPTのコメント</p>
+            <p id="gpt_title">ChatGPTのコメント</p>
             <p id="comment"></p>
         </div>
         

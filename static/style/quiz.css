@@ -17,13 +17,13 @@
     font-size: 2rem;
     
     margin: 2% auto;
-    padding: 2.5%;
+    padding: 1% 2.5%;
     width: 80%;
     text-align: center;
     border-radius: 5px;
 }
 #quiz-form {
-    padding: 5% 0;
+    padding: 2% 0;
 
     font-size: 2rem;
 
@@ -35,13 +35,13 @@
 #quiz-item {
     text-align: left;
     padding-left: 10%;
+    padding: 1% 5%;
 }
 #quiz-button {
     height: 25%;
     width: 35%;
 
     margin: 0 auto;
-    margin-top: 1.5%;
     padding: 2% 0;
 
     background-color: #fcb38b;
