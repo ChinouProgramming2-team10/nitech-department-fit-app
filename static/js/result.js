@@ -23,8 +23,17 @@ $(document).ready(function () {
     canvas = $("#result_chart");
     ctx = canvas[0].getContext("2d");
 
-    new CustomLegendChartDisplay().init();
+    if(isLoad) {
+        initChart();
+    }
+    else {
+        window.setTimeout(initChart, 1000);
+    }
+
 });
+let initChart= () => {
+    new CustomLegendChartDisplay().init();
+}
 
 
 CustomLegendChartDisplay.prototype.init = function () {
