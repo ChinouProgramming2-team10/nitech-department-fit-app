@@ -25,12 +25,12 @@ $(document).ready(function () {
     canvas = $("#result_chart");
     ctx = canvas[0].getContext("2d");
 
-    if(isLoad) {
-        initChart();
-    }
-    else {
-        window.setTimeout(initChart, 1000);
-    }
+    initChart();
+    // if(isLoad) {
+    // }
+    // else {
+    //     window.setTimeout(initChart, 1000);
+    // }
 
 });
 let initChart= () => {
