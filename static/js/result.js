@@ -5,6 +5,8 @@ const CHART_COLOR = "rgba(0,255,0,.6)";
 let canvas = null;
 let ctx = null;
 
+let isLoad = false;
+
 dep_name_dic = {
     "EM": "電気機械工学科",
     "PE": "物理工学科",
