@@ -26,12 +26,6 @@ $(document).ready(function () {
     ctx = canvas[0].getContext("2d");
 
     initChart();
-    // if(isLoad) {
-    // }
-    // else {
-    //     window.setTimeout(initChart, 1000);
-    // }
-
 });
 let initChart= () => {
     new CustomLegendChartDisplay().init();
@@ -57,6 +51,8 @@ CustomLegendChartDisplay.prototype.getChartProperty = function () {
     let chartProperty = {
       // グラフの種類
     //   type: "horizontalBar",
+    //   type: "polarArea",
+    //   type: "radar",
       type: "bar",
       // データ
       data: this.getChartData(),

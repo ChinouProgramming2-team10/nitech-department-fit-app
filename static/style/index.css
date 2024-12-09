@@ -2,7 +2,11 @@
     text-align: center;
 }
 #title {
-    font-size: 2.5rem;
+    font-size: 3rem;
+
+    font-family: "Kaisei Decol", serif;
+    font-weight: 400;
+    font-style: normal;     
 }
 #explain {
     border: #515151 2px solid;
@@ -28,10 +32,29 @@
     border-radius: 10px;
     border: #FFF 2px solid;
 }
+#quiz-button {
+    height: 25%;
+    width: 35%;
+
+    font-size: 2rem;
+    letter-spacing: 0.6rem;
+    
+    margin: 1.5% auto;
+    padding: 2% 0;
+    
+    border-radius: 10px;
+    border: #FFF 2px solid;
+    background-color: #fcb38b;
+}
 #start-button {
     letter-spacing: 0.6rem;
     font-size: 2rem;
 }
 a {
     text-decoration: none;
+}
+#nitech-logo {
+    padding: 2rem;
+
+    background-color: #001e6a;
 }

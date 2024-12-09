@@ -6,21 +6,29 @@
     <title>学科適性判定クイズ</title>
     <!-- スタイルシートのリンク -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ url_for('static', filename='js/scroll.js') }}"></script>
 
     <link rel="stylesheet" href="{{ url_for('static', filename='style/header.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='style/footer.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='style/index.css') }}">
+
+    <!-- フォント読み込み -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kaisei+Decol&family=Yuji+Mai&display=swap" rel="stylesheet">
 </head>
 <body>
     {% include 'header.html' %}
     <div class="main">
-        <h1 id="title">ようこそ！学科適性判定クイズへ</h1>
+        <img id="nitech-logo" src="https://www.nitech.ac.jp/assets/imgs/base/logo_en.png"/>
+        <h1 id="title">ようこそ！名工大 学科適性判定クイズへ</h1>
         <p id="explain">20の質問に答えて、あなたに最適な学科を見つけましょう。</p>
-        <div id="button-shape">
+        <!-- <div id="button-shape">
             <a href="{{ url_for('quiz', question_id=1) }}" id="start-button">
                 &nbsp;&nbsp;クイズを開始&nbsp;>
             </a>
-        </div>
+        </div> -->
+        <input type="button" onclick="location.href='./quiz/1'" value="  クイズを開始 >" id="quiz-button">
     </div>
     {% include 'footer.html' %}
 </body>
